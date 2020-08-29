@@ -119,6 +119,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "tiny-mce"
+    }
+  },
+  "defaultProject": "tiny-mce",
+  "cli": {
+    "analytics": false
+  }
 }

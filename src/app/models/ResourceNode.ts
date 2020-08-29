@@ -30,7 +30,7 @@ export class ResourceNode {
         this._value = value;
     }
 
-    private _children: ResourceNode[];
+    private readonly _children: ResourceNode[];
     public get children(): ResourceNode[] {
         if (this.type === NodeType.Text) {
             return [];

@@ -21,7 +21,7 @@ export class SectionService {
 
         let htmlSection = document.createElement('section');
         htmlSection.innerHTML = viewModel.body;
-
+        
         this.addChildren(resourceSection, htmlSection.childNodes);
         return this.httpClient.post<string>(this.createSectionUrl, viewModel);
     }
@@ -35,6 +35,9 @@ export class SectionService {
             let htmlChildNode = <HTMLElement> htmlNodes[i];
             let resourceChildNode = new ResourceNode(htmlChildNode.id, htmlChildNode.nodeType, htmlChildNode.nodeName);
             if (htmlChildNode.nodeType === NodeType.Text) {
+                if(htmlChildNode.nodeValue == '\n') {
+                    continue;
+                }
                 resourceChildNode.value = htmlChildNode.nodeValue;
             }
 

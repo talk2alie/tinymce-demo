@@ -32,6 +32,7 @@ export class AppComponent {
         section.innerHTML = body;
 
         let newSection: SectionViewModel = {
+            id: 'TestGuide',
             position: 1,
             body: body,
             subtitle: subtitle,
@@ -39,7 +40,7 @@ export class AppComponent {
         };
 
         this.sectionService.createNewSectionFrom(newSection)
-            .subscribe(id => console.log(id));
+            .subscribe(section => console.log(section.id));
     }
 
     cancel(): void {

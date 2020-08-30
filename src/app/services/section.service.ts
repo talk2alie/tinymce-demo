@@ -37,8 +37,8 @@ export class SectionService {
         }
 
         for (let i = 0; i < htmlNodes.length; ++i) {
-            let htmlChildNode = <HTMLElement> htmlNodes[i];
-            let resourceChildNode: ResourceNode = this.instantiateNodeFrom(htmlChildNode);
+            let htmlChildNode = <HTMLElement>htmlNodes[i];
+            let resourceChildNode: ResourceNode = this.getResourceNodeFrom(htmlChildNode);
             if (htmlChildNode.nodeType === NodeType.Text) {
                 if(htmlChildNode.nodeValue == '\n') {
                     continue;
@@ -55,7 +55,7 @@ export class SectionService {
         }
     }
 
-    private instantiateNodeFrom(htmlChildNode: HTMLElement): ResourceNode {
+    private getResourceNodeFrom(htmlChildNode: HTMLElement): ResourceNode {
         return {
             children: [],
             id: htmlChildNode.id,

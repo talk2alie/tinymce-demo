@@ -40,7 +40,7 @@ export class AppComponent {
         };
 
         this.sectionService.createNewSectionFrom(newSection)
-            .subscribe(section => console.log(section.id));
+            .subscribe(section => console.log(JSON.stringify(section)));
     }
 
     cancel(): void {

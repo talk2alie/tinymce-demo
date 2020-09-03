@@ -12,7 +12,7 @@ export class SectionService {
 
     constructor(private httpClient: HttpClient) {}
 
-    createNewSectionFrom(viewModel: SectionViewModel): Observable<Section> {
+    createNewSectionFrom(viewModel: SectionViewModel): Observable<any> {
         let resourceSection: Section = {
             id: viewModel.id,
             position: viewModel.position,
@@ -28,7 +28,7 @@ export class SectionService {
         htmlSection.innerHTML = viewModel.body;
 
         this.addChildren(resourceSection, htmlSection.childNodes);
-        return this.httpClient.post<Section>(this.createSectionUrl, resourceSection);
+        return this.httpClient.post(this.createSectionUrl, resourceSection);
     }
 
     private addChildren(resourceNode: ResourceNode, htmlNodes: NodeListOf<ChildNode>): void {

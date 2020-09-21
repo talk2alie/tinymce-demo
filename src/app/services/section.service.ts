@@ -8,7 +8,7 @@ import { NodeType } from '../models/NodeType';
 
 @Injectable({ providedIn: 'root' })
 export class SectionService {
-    private createSectionUrl = 'https://localhost:5001/api/sections';
+    private sectionBaseUrl = 'https://localhost:5001/api/sections';
 
     constructor(private httpClient: HttpClient) {}
 
@@ -28,7 +28,11 @@ export class SectionService {
         htmlSection.innerHTML = viewModel.body;
 
         this.addChildren(resourceSection, htmlSection.childNodes);
-        return this.httpClient.post(this.createSectionUrl, resourceSection);
+        return this.httpClient.post(this.sectionBaseUrl, resourceSection);
+    }
+
+    getSectionBy(id: string): Observable<SectionViewModel> {
+        return this.httpClient.get<SectionViewModel>(`${this.sectionBaseUrl}/${id}`);
     }
 
     private addChildren(resourceNode: ResourceNode, htmlNodes: NodeListOf<ChildNode>): void {

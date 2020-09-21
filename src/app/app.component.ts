@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { SectionService } from './services/section.service';
 import { SectionViewModel } from './models/SectionViewModel';
@@ -8,19 +8,38 @@ import { SectionViewModel } from './models/SectionViewModel';
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css'],
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
     title = 'Introduction to TinyMCE';
     sectionFormGroup: FormGroup;
+    sectionTitle: FormControl;
+    sectionSubtitle: FormControl;
+    sectionBody: FormControl;
+
     constructor(private sectionService: SectionService) {
-        let sectionTitle = new FormControl('Introduction to Loops');
-        let sectionSubtitle = new FormControl('For-Loop');
-        let sectionBody = new FormControl();
+        this.sectionTitle = new FormControl();
+        this.sectionSubtitle = new FormControl();
+        this.sectionBody = new FormControl();
 
         this.sectionFormGroup = new FormGroup({
-            sectionTitle: sectionTitle,
-            sectionSubtitle: sectionSubtitle,
-            sectionBody: sectionBody
+            sectionTitle: this.sectionTitle,
+            sectionSubtitle: this.sectionSubtitle,
+            sectionBody: this.sectionBody,
         });
+    }
+
+    ngOnInit(): void {
+        this.sectionService.getSectionBy('17d0335d-860a-45bd-b46c-154f5e01dbf8')
+            .subscribe(section => {
+                this.sectionTitle = new FormControl(section.title);
+                this.sectionSubtitle = new FormControl(section.subtitle);
+                this.sectionBody = new FormControl(section.body);
+
+                this.sectionFormGroup = new FormGroup({
+                    sectionTitle: this.sectionTitle,
+                    sectionSubtitle: this.sectionSubtitle,
+                    sectionBody: this.sectionBody,
+                });
+            });
     }
 
     save(): void {

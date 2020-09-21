@@ -65,4 +65,8 @@ export class AppComponent implements OnInit {
     cancel(): void {
 
     }
+
+    onChange(event: any): void {
+        console.log(JSON.stringify(event));
+    }
 }

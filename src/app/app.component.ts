@@ -11,11 +11,13 @@ import { SectionViewModel } from './models/SectionViewModel';
 export class AppComponent implements OnInit {
     title = 'Introduction to TinyMCE';
     sectionFormGroup: FormGroup;
+    sectionId: FormControl;
     sectionTitle: FormControl;
     sectionSubtitle: FormControl;
     sectionBody: FormControl;
 
     constructor(private sectionService: SectionService) {
+        this.sectionId = new FormControl();
         this.sectionTitle = new FormControl();
         this.sectionSubtitle = new FormControl();
         this.sectionBody = new FormControl();
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
     ngOnInit(): void {
         this.sectionService.getSectionBy('17d0335d-860a-45bd-b46c-154f5e01dbf8')
             .subscribe(section => {
+                this.sectionId = new FormControl(section.id);
                 this.sectionTitle = new FormControl(section.title);
                 this.sectionSubtitle = new FormControl(section.subtitle);
                 this.sectionBody = new FormControl(section.body);
@@ -51,7 +54,7 @@ export class AppComponent implements OnInit {
         section.innerHTML = body;
 
         let newSection: SectionViewModel = {
-            id: 'TestGuide',
+            id: this.sectionId.value,
             position: 1,
             body: body,
             subtitle: subtitle,

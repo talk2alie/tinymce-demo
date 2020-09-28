@@ -29,16 +29,14 @@
             <editor id="sectionBody"
                     apiKey="8wkcdb3k8eagf3kmqla0jyjys9378mgxisonp2vgziyvoe2i"
                     [init]="{
-                    plugins: 'powerpaste autoresize lists code legacyoutput',
-                    toolbar: 'undo redo | bold italic underline | \
-                              strikethrough subscript superscript | code',
-                    menubar: false,
-                    min_height: 320,
-                    max_height: 640,
-                    inline: true
-                }"
-                    formControlName="sectionBody"
-                    (onChange)="onChange($event)">
+                                plugins: 'powerpaste autoresize lists code legacyoutput',
+                                toolbar: 'undo redo | bold italic underline | \
+                                        strikethrough subscript superscript | code',
+                                menubar: false,
+                                min_height: 320,
+                                max_height: 640
+                            }"
+                    formControlName="sectionBody">
             </editor>
         </div>
         <button type="submit"
